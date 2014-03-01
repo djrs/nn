@@ -8,7 +8,8 @@ iteration, output median difference between the solution and target
 values. Every 20 iterations, test the current neural network on a few
 tertiary test data sets and seperately record their mean
 difference. These will be plotted to show the gradual improvement of
-the neural network and to test for overfitting.'''
+the neural network and to test for overfitting.
+'''
 
 def calculateInput(photometryData):
     # Takes a photometry class object, selects and normalizes a few
