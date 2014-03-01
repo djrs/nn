@@ -103,7 +103,6 @@ class NeuralNetwork(object):
         self.hiddenLayer.emptyData()
         self.outputLayer.emptyData()
 
-
     def trainNeuralNetwork(self, trainingSet, targets, maximumIterations=100, stepSize=0.000001, clean=True, outputFile="nn_output.dat"):
         # Train the neural network on these datasets. 
         # Initialize counters
@@ -123,11 +122,11 @@ class NeuralNetwork(object):
             mean=np.mean(absdiff)
             median=np.median(absdiff)
             std=np.std(absdiff)
-            min=np.min(diff)
-            max=np.max(diff)
-            print "Deviations from target classifications: mean: {}, median: {}, standard deviation {}, minimum difference: {}, maximum difference {}".format(mean,median,std,min,max)
+            mindiff=np.min(diff)
+            maxdiff=np.max(diff)
+            print "Deviations from target classifications: mean: {}, median: {}, standard deviation {}, minimum difference: {}, maximum difference {}".format(mean,median,std,mindiff,maxdiff)
             with open(outputFile,'a') as outfile:
-                outfile.write('{:02d}, {}, {}, {}, {}, {}\n'.format(iterations, mean, median, std, min, max))
+                outfile.write('{:02d}, {}, {}, {}, {}, {}\n'.format(iterations, mean, median, std, mindiff, maxdiff))
             # Calculate weight updates for each layer
             newOutputWeights = self.outputLayer.calculateWeightUpdates(self.hiddenLayer, targets=targets)
             newHiddenWeights = self.hiddenLayer.calculateWeightUpdates(self.outputLayer, data=trainingSet)
